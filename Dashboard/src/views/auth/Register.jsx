@@ -1,82 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import InputField from "../../components/InputField";
 function Register() {
- 
+  const [state, setState] = useState({
+    fullname: "",
+    email: "",
+    password: "",
+    confirm_password: "",
+  });
 
+  const inputHandler = (e) => {
+    setState({
+      ...state,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const submit = (e) => {
+    e.preventDefault();
+    console.log(state);
+  };
   return (
     <div
       className="mx-10 my-15 md:mx-30 lg:mx-[30%]  flex 
     flex-col items-center"
     >
       <h1 className="mb-10 text-3xl text-gray-800 font-semibold   ">
-        Get Started Now 
+        Get Started Now
       </h1>
 
       <form className=" md:w-[80%] ">
-        <div className="mb-6">
-          <label
-            for="first_name"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-          >
-            Full name
-          </label>
-          <input
-            type="text"
-            id="first_name"
-            className="inputClass"
-            placeholder="Vikram Gupta"
-            required
-          />
-        </div>
+        <InputField type="text" name="Full name" placeholder="Jhon jonny" />
 
-        <div className="mb-6">
-          <label
-            for="email"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-          >
-            Email address
-          </label>
-          <input
-            type="email"
-            id="email"
-            className="inputClass"
-            placeholder="john.doe@company.com"
-            required
-          />
-        </div>
+        <InputField type="email" name="email" placeholder="jhon@gmail.com" />
+        <InputField type="password" name="password" placeholder="•••••••••" />
+        <InputField
+          type="confirm_password"
+          name="confirm_password"
+          placeholder="•••••••••"
+        />
 
-        <div className="mb-6">
-          <label
-            for="password"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-          >
-            Password
-          </label>
-          <input
-            type="password"
-            id="password"
-            className="inputClass"
-            placeholder="•••••••••"
-            required
-          />
-        </div>
-        <div className="mb-6">
-          <label
-            for="confirm_password"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-          >
-            Confirm password
-          </label>
-          <input
-            type="password"
-            id="confirm_password"
-            className="inputClass"
-            placeholder="•••••••••"
-            required
-          />
-        </div>
         <div className="flex items-start mb-6">
           <div className="flex items-center h-5">
             <input
@@ -118,25 +83,27 @@ function Register() {
       </div>
 
       <div className="flex justify-between gap-5">
-        <button
-          type="button"
-          className="btn"
-        >
-          <FcGoogle  fontSize={25}/>
+        <button type="button" className="btn">
+          <FcGoogle fontSize={25} />
           <span className="hidden sm:inline">Sign in with Google</span>
         </button>
 
-        <button
-          type="button"
-          className="btn"
-        >
-          <FaFacebook fontSize={25} />  
-          
+        <button type="button" className="btn">
+          <FaFacebook fontSize={25} />
+
           <span className="hidden sm:inline">Sign in with Facebook</span>
         </button>
       </div>
 
-      <p className="text-sm mt-2">Have an account?<Link className=" ml-2 cursor-pointer text-blue-500 font-semibold text-sm" to="/login">Sign in</Link></p>
+      <p className="text-sm mt-2">
+        Have an account?
+        <Link
+          className=" ml-2 cursor-pointer text-blue-500 font-semibold text-sm"
+          to="/login"
+        >
+          Sign in
+        </Link>
+      </p>
     </div>
   );
 }
